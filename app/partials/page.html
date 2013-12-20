@@ -1,0 +1,40 @@
+<div class="col-md-12">
+  <h1>{{page.name}}</h1>
+
+  <p><a ng-href="{{page.url}}">Visit Site</a></p>
+  <table class="table">
+    <thead class="table-striped">
+      <tr>
+        <th><a ng-click="predicate = 'title';reverse = !reverse">Name</a></th>
+        <th><a ng-click="predicate = 'value';reverse = !reverse">Value</a></th>
+      </tr>
+    </thead>
+    <tr ng-repeat="s in summary | orderBy:predicate:reverse">
+      <td>{{s.title}}</td>
+      <td>{{s.value}}</td>
+    </tr>
+  </table>
+
+  <div ng-repeat="group in groupRatings">
+    <h3>Group {{group.name}}</h3>
+    <p>Summarized group score <span class="score-{{group.points}}">{{group.score | number:2}} or max {{group.maxScore}}</span></p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th><a ng-click="predicate2 = 'title'; reverse2 = !reverse2">Name</a></th>
+          <th><a ng-click="predicate2 = 'value'; reverse2 = !reverse2">Value</a></th>
+          <th><a ng-click="predicate2 = 'score'; reverse2 = !reverse2">Score</a></th>
+          <th>Suggestions</th>
+        </tr>
+      </thead>
+      <tr ng-repeat="rating in group.ratings | orderBy:predicate2:reverse2">
+        <td><a href="#/ratings/{{slug(rating.title)}}">{{rating.title}}</a></td>
+        <td>{{rating.value}}</td>
+        <td class="score-{{rating.points}}">{{rating.score | number:2}}</td>
+        <td>{{rating.suggestions.join(', ')}}</td>
+      </tr>
+    </table>
+  </div>
+
+</div>

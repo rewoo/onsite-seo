@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="seoApp">
+  <head>
+    <title>OnSite SEO Offline Tool</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+    <script type="text/javascript" src="//code.angularjs.org/1.2.5/angular.min.js"></script>
+    <script type="text/javascript" src="//code.angularjs.org/1.2.5/angular-route.min.js"></script>
+    <script type="text/javascript" src="js/bundle.js"></script>
+    <script type="text/javascript" src="js/seoApp.js"></script>
+    <script type="text/javascript" src="js/services/siteService.js"></script>
+    <script type="text/javascript" src="js/services/ratingService.js"></script>
+    <script type="text/javascript" src="js/controllers/pageListCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/pageCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/ratingListCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/ratingCtrl.js"></script>
+
+    <style type="text/css">
+      .score {
+        display: block;
+      }
+      .score-1 {
+        background-color: #ff9e9e;
+      }
+      .score-2 {
+        background-color: #ffd89e;
+      }
+      .score-3 {
+        background-color: #fff39e;
+      }
+      .score-4 {
+        background-color: #e6ff9e;
+      }
+      .score-5 {
+        background-color: #9eff9e;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#seo-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#/">OnSite SEO</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="seo-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#/pages">Pages</a></li>
+            <li><a href="#/ratings">Ratings</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div ng-view></div>
+    </div>
+  </body>
+</html>

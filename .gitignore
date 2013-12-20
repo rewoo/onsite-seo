@@ -1,0 +1,5 @@
+node_modules
+nbproject
+seo-data.json
+report.html
+app/js/bundle.js
