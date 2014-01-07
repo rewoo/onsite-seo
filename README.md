@@ -1,9 +1,9 @@
-# Offline OnSite SEO Tool
+# OnPage SEO tool for your website
 
-Evaluate your site offline for Search Engine Optimazations - for all your pages.
+Inpect and improve your web pages for OnPage SEO with offline support.
 
-This tool will crawl your page for local links and will evaluate some SEO criterias
-on all your pages to improve your SEO value like meta information, header order,
+OnSite SEO crawls a site and evaluates OnPage SEO criterias on all pages to
+improve Search Engine Optimization values like meta information, header order,
 links or texts.
 
 Visit the [demo page](http://rewoo.github.io/onsite-seo).
