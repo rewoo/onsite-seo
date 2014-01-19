@@ -6,14 +6,14 @@
       <tr>
         <td><a ng-click="predicate = 'name'; reverse = !reverse">Name</a></td>
         <td><a ng-click="predicate = 'score'; reverse = !reverse">Score</a></td>
-        <td><a ng-click="predicate = 'points'; reverse = !reverse">Points</a></td>
+        <td><a ng-click="predicate = 'weightedScore'; reverse = !reverse">Weighted Score</a></td>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="page in ratingsPerPage | orderBy:predicate:reverse">
         <td><a href="#/pages/{{page.id}}">{{page.name}}</a></td>
-        <td class="score-{{page.points}}">{{page.score | number:2}}</td>
-        <td>{{page.points}}</td>
+        <td class="score-{{page.allScore | points}}">{{page.score | number:2}}</td>
+        <td>{{page.weightedScore | number:2}}</td>
       </tr>
     </tbody>
   </table>

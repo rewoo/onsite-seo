@@ -46,10 +46,10 @@ Clone this project from github. Than
 The process has two steps. First `lib/crawler.js` crawls the webpage, inject jQuery
 to the current page and extracts some key properties via `lib/inspector.js`.
 
-Than for offline report the result evalutated in `lib/report.js` by calling rating
+Than for offline report evaluates the result in `lib/report.js` by calling rating
 functions of `lib/ratings.js`.
 
-Or for the online SPA report the result is stored in `seo-data.json` and parsted in
+Or for the online SPA report the result is stored in `seo-data.json` and parsed in
 the angular `app`.
 
 Have a look to the ratings functions in `lib/ratings-*.js`. These functions rate
@@ -65,15 +65,15 @@ and copies `seo-data.json`.
 ### Ratings
 
 A rating object has at least a `title` and a `rateFn` rating function. `description`,
-`max`, and `group` are optional, but are set within `ratings.addRating()`.
-`max` is the score maximum of the rating fuction, by default 10. The rating
+`weight`, and `group` are optional, but are set within `ratings.addRating()`.
+`weight` is the score weight of the rating function, which default is 1. The rating
 function is called with the page and the site:
 
     var result = rating.rateFn(page, site)
 
 The result of `rateFn` is a score number or an object with at least `score` and a list
 of `suggestions`. The `value` is optional. The result is proxied in
-`ratings.proxyRateFn()` and the score is limited between 0 and `max` automatically.
+`ratings.proxyRateFn()` and the score is limited between 0 and 1 automatically.
 
 ## Motivation
 
@@ -104,7 +104,7 @@ MIT, see LICENSE file.
 
 ### How does it work
 
-First, your page is crawled and each page is insprected with some major properties
+First, your page is crawled and each page is inspected with some major properties
 like meta information, headers, links, resources, etc. In a second step these
 collected data are scored through different rating functions and summarized.
 
@@ -126,10 +126,10 @@ OK. Yes. I know. This is not used yet. But you can!
 Phantomjs is not nodejs. There share some functionality but they are not the same.
 So we need these two steps.
 
-### The single scores of my page are arbitrary
+### The single weight of my page are arbitrary
 
-Yes. They are. The should only give you some hint for your page. Most scores are
-from 0 to 10. If you know better values, please file a github pull request.
+Yes. They are. The should only give you some hint for your page. Most weights are
+from 0.2 to 5. If you know better values, please file a github pull request.
 
 ### This tool does not show my backlinks or page rank
 

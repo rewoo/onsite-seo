@@ -34,14 +34,14 @@ angular.module('seoApp').factory('RatingService', ['$http', function($http) {
   service.getAllPageRatings = function(site, pages) {
     var result = [];
     for (var i in fns) {
-      var tmp = {title: fns[i].title, description: fns[i].description, score: 0, max: 0, points: 0, pages: 0};
+      var tmp = {title: fns[i].title, description: fns[i].description, score: 0, weightedScore: 0, weight: 0, pages: 0};
       for (var j in pages) {
         var rateResult = fns[i].rateFn(pages[j], site);
         tmp.pages++;
         tmp.score += rateResult.score;
-        tmp.max += fns[i].max;
+        tmp.weightedScore += rateResult.weightedScore;
       }
-      tmp.points = ratings.getPoints(tmp.score, tmp.max);
+      tmp.allScore = tmp.score / pages.length;
       result.push(tmp);
     };
     return result;
@@ -50,14 +50,14 @@ angular.module('seoApp').factory('RatingService', ['$http', function($http) {
   service.getAllRatingsPerPage = function(site, pages) {
     var result = [];
     for (var i in pages) {
-      var tmp = {name: pages[i].name, id: pages[i].id, score: 0, max: 0, points: 0, ratings: 0};
+      var tmp = {name: pages[i].name, id: pages[i].id, score: 0, weightedScore: 0, ratings: 0};
       for (var j in fns) {
         var rateResult = fns[j].rateFn(pages[i], site);
         tmp.ratings++;
         tmp.score += rateResult.score;
-        tmp.max += fns[j].max;
+        tmp.weightedScore += rateResult.weightedScore;
       }
-      tmp.points = ratings.getPoints(tmp.score, tmp.max);
+      tmp.allScore = tmp.score / fns.length;
       result.push(tmp);
     };
     return result;

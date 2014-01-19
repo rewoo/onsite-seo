@@ -25,13 +25,15 @@
           <th><a ng-click="predicate2 = 'title'; reverse2 = !reverse2">Name</a></th>
           <th><a ng-click="predicate2 = 'value'; reverse2 = !reverse2">Value</a></th>
           <th><a ng-click="predicate2 = 'score'; reverse2 = !reverse2">Score</a></th>
+          <th><a ng-click="predicate2 = 'weightedScore'; reverse2 = !reverse2">Weighted Score</a></th>
           <th>Suggestions</th>
         </tr>
       </thead>
       <tr ng-repeat="rating in group.ratings | orderBy:predicate2:reverse2">
         <td><a href="#/ratings/{{slug(rating.title)}}">{{rating.title}}</a></td>
         <td>{{rating.value}}</td>
-        <td class="score-{{rating.points}}">{{rating.score | number:2}}</td>
+        <td class="score-{{rating.score | points}}">{{rating.score | number:2}}</td>
+        <td>{{rating.weightedScore | number:2}}</td>
         <td>{{rating.suggestions.join(', ')}}</td>
       </tr>
     </table>
