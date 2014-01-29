@@ -56,9 +56,8 @@ crawler.crawl(address, options).then(function(result) {
     fs.write('seo-data.json', JSON.stringify(result), 'w');
   }
   phantom.exit();
-}).fail(function (err) {
-  console.log("An error occured");
-  console.log(err);
+}, function (error) {
+  console.log("An error occured: "+error.err);
   phantom.exit();
 });
 
