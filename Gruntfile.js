@@ -13,10 +13,11 @@ module.exports = function(grunt) {
     browserify: {
       dist: {
         files: {
-          'app/js/bundle.js': ['lib/ratings.js', 'lib/urlUtils.js', 'lib/properties.js']
+          'app/js/bundle.js': ['lib/ratings.js', 'lib/urlUtils.js', 'lib/properties.js','lib/lightdom.js'],
+          'lib/inspectorAll.js': ['lib/inspector.js']
         },
         options: {
-          alias: 'lib/ratings.js:ratings,lib/urlUtils.js:urlUtils,lib/properties.js:properties'
+          alias: 'lib/ratings.js:ratings,lib/urlUtils.js:urlUtils,lib/properties.js:properties,lib/lightdom.js:lightdom,lib/inspector.js:inspector'
         }
       }
     },
