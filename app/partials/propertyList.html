@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="property in allPageProperties | orderBy:predicate:reverse">
+      <tr ng-repeat="property in allPageProperties | numericOrderBy:predicate:reverse">
         <td><a href="#/properties/{{slug(property.title)}}">{{property.title}}</a></td>
         <td>{{property.description}}</td>
       </tr>

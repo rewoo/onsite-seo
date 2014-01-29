@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="pageProperty in pageProperties | orderBy:predicate:reverse">
+      <tr ng-repeat="pageProperty in pageProperties | numericOrderBy:predicate:reverse">
         <td><a href="#/pages/{{pageProperty.page.id}}">{{pageProperty.page.name}}</a></td>
         <td>{{pageProperty.property.value}}</td>
       </tr>
