@@ -13,7 +13,8 @@
     "q": "*",
     "phantomjs": "*",
     "browserify": "*",
-    "express": "*"
+    "express": "*",
+    "url": "~0.7.9"
   },
   "license": "MIT",
   "engines": {
