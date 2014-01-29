@@ -1,0 +1,18 @@
+<div class="col-md-12">
+  <h1>Property Overview</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <td><a ng-click="predicate = 'title'; reverse = !reverse">Name</a></td>
+        <td><a ng-click="predicate = 'description'; reverse = !reverse">Description</a></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="property in allPageProperties | orderBy:predicate:reverse">
+        <td><a href="#/properties/{{slug(property.title)}}">{{property.title}}</a></td>
+        <td>{{property.description}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

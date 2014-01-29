@@ -1,8 +1,8 @@
-angular.module('seoApp').factory('RatingService', ['$http', function($http) {
+angular.module('seoApp').factory('RatingService', [function() {
   var service = {},
     ratings = require('ratings'),
     fns = ratings.getRatings(),
-    urlUtils = require('urlUtils'),
+    slug = require('urlUtils').slug,
     titles = [];
 
   for (var i in fns) {
@@ -13,18 +13,9 @@ angular.module('seoApp').factory('RatingService', ['$http', function($http) {
     return titles.indexOf(name) >= 0;
   };
 
-  service.getIdByTitle = function(title) {
+  service.getRatingBySlug = function(text) {
     for (var i in fns) {
-      if (fns[i].title === title) {
-        return rating;
-      }
-    }
-    return null;
-  };
-
-  service.getRatingBySlug = function(slug) {
-    for (var i in fns) {
-      if (urlUtils.slug(fns[i].title) === slug) {
+      if (slug(fns[i].title) === text) {
         return fns[i];
       }
     }

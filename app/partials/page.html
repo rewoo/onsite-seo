@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tr ng-repeat="s in summary | orderBy:predicate:reverse">
-      <td>{{s.title}}</td>
+      <td><a href="#/properties/{{slug(s.title)}}">{{s.title}}</a></td>
       <td>{{s.value}}</td>
     </tr>
   </table>

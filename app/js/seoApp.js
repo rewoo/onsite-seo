@@ -16,6 +16,14 @@ angular.module('seoApp', ['ngRoute']).config(['$routeProvider', function($routeP
           templateUrl: 'partials/ratingList.html',
           controller: 'RatingListCtrl'
         }).
+        when('/properties/:propertySlug', {
+          templateUrl: 'partials/property.html',
+          controller: 'PropertyCtrl'
+        }).
+        when('/properties', {
+          templateUrl: 'partials/propertyList.html',
+          controller: 'PropertyListCtrl'
+        }).
         otherwise({
           redirectTo: '/pages'
         });

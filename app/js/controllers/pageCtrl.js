@@ -1,6 +1,6 @@
-angular.module('seoApp').controller('PageCtrl', ['$scope', '$routeParams', 'SiteService', 'RatingService', function($scope, $routeParams, SiteService, RatingService) {
+angular.module('seoApp').controller('PageCtrl', ['$scope', '$routeParams', 'SiteService', 'RatingService', 'PropertyService', function($scope, $routeParams, SiteService, RatingService, PropertyService) {
   var ratings = require('ratings'),
-    urlUtils = require('urlUtils');
+    slug = require('urlUtils').slug;
 
   $scope.id = null;
   $scope.site = null;
@@ -20,7 +20,7 @@ angular.module('seoApp').controller('PageCtrl', ['$scope', '$routeParams', 'Site
     }
   });
 
-  $scope.slug = urlUtils.slug;
+  $scope.slug = slug;
   $scope.groups = ratings.getGroups();
 
   $scope.update = function() {
@@ -33,7 +33,7 @@ angular.module('seoApp').controller('PageCtrl', ['$scope', '$routeParams', 'Site
   };
 
   $scope.updatePage = function() {
-    $scope.summary = ratings.getPageSummary($scope.page, $scope.site);
+    $scope.summary = PropertyService.getAllPropertiesForPage($scope.site, $scope.page);
     $scope.groupRatings = [];
     for (var i in $scope.groups) {
       var group = $scope.groups[i], groupRatings = $scope.getRatingsByGroup(group), score = 0, maxScore = 0;
