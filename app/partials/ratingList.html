@@ -1,6 +1,8 @@
 <div class="col-md-12">
   <h1>Rating Overview</h1>
 
+  <p><input class="form-control" placeholder="Rating Filter" ng-model="filter" /></p>
+
   <div class="row">
     <div class="col-sm-4"><a ng-click="predicate = 'title'; reverse = !reverse">Name</a></div>
     <div class="col-sm-5">Description</div>
@@ -8,7 +10,7 @@
     <div class="col-sm-1"><a ng-click="predicate = 'weight'; reverse = !reverse">Weight</a></div>
   </div>
 
-  <div class="row row-rating" ng-repeat="rating in allPageRatings | orderBy:predicate:reverse">
+  <div class="row row-rating" ng-repeat="rating in allPageRatings | filter:filter | orderBy:predicate:reverse">
     <div class="col-sm-4"><a href="#/ratings/{{slug(rating.title)}}">{{rating.title}}</a></div>
     <div class="col-sm-5">{{rating.description}}</div>
     <div class="col-sm-2"><progressbar progress="rating.score" /></div>

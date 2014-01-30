@@ -1,18 +1,16 @@
 <div class="col-md-12">
   <h1>Property Overview</h1>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <td><a ng-click="predicate = 'title'; reverse = !reverse">Name</a></td>
-        <td><a ng-click="predicate = 'description'; reverse = !reverse">Description</a></td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="property in allPageProperties | numericOrderBy:predicate:reverse">
-        <td><a href="#/properties/{{slug(property.title)}}">{{property.title}}</a></td>
-        <td>{{property.description}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <p><input class="form-control" placeholder="Property Filter" ng-model="filter" /></p>
+
+  <div class="row">
+    <div class="col-sm-4"><a ng-click="predicate = 'title'; reverse = !reverse">Name</a></div>
+    <div class="col-sm-8"><a ng-click="predicate = 'description'; reverse = !reverse">Description</a></div>
+  </div>
+
+  <div class="row row-rating" ng-repeat="property in allPageProperties | filter:filter | numericOrderBy:predicate:reverse">
+    <div class="col-sm-4"><a href="#/properties/{{slug(property.title)}}">{{property.title}}</a></div>
+    <div class="col-sm-8">{{property.description}}</div>
+  </div>
+
 </div>
