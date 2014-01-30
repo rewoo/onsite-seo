@@ -48,6 +48,18 @@ while (i < system.args.length) {
 crawler.crawl(address, options).then(function(result) {
   var html;
 
+  // unify page results
+  if (result.pages) {
+    var uniqueUrls = [];
+    for (var i = result.pages.length - 1; i >= 0; i--) {
+      if (uniqueUrls.indexOf(result.pages[i].url) < 0) {
+        uniqueUrls.push(result.pages[i].url)
+      } else {
+        result.pages.splice(i, 1);
+      }
+    }
+  }
+
   if (!options.dataOnly) {
     var report = require('./lib/report')
     html = report.generateReport(result);
