@@ -1,25 +1,17 @@
 <div class="col-md-12">
   <h1>{{rating.title}}</h1>
   <p>{{rating.description}}</p>
+  <p>Weight: {{rating.weight}}</p>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th><a ng-click="predicate = 'page.name'; reverse = !reverse">Name</a></th>
-        <th><a ng-click="predicate = 'rating.value'; reverse = !reverse">Value</a></th>
-        <th><a ng-click="predicate = 'rating.score'; reverse = !reverse">Score</a></th>
-        <th><a ng-click="predicate = 'rating.points'; reverse = !reverse">Points</a></th>
-        <th>Suggestions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="pageRating in pageRatings | orderBy:predicate:reverse">
-        <td><a href="#/pages/{{pageRating.page.id}}">{{pageRating.page.name}}</a></td>
-        <td>{{pageRating.rating.value}}</td>
-        <td class="score-{{pageRating.rating.points}}">{{pageRating.rating.score | number:2}}</td>
-        <td>{{pageRating.rating.points}}</td>
-        <td>{{pageRating.rating.suggestions.join(', ')}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-sm-7"><a ng-click="predicate = 'page.name'; reverse = !reverse">Name</a></div>
+    <div class="col-sm-2"><a ng-click="predicate = 'rating.value'; reverse = !reverse">Value</a></div>
+    <div class="col-sm-3"><a ng-click="predicate = 'rating.score'; reverse = !reverse">Score</a></div>
+  </div>
+  <div class="row row-rating" data-ng-repeat="pageRating in pageRatings | orderBy:predicate:reverse">
+    <div class="col-sm-7"><a href="#/pages/{{pageRating.page.id}}">{{pageRating.page.name}}</a></div>
+    <div class="col-sm-2">{{pageRating.rating.value}}</div>
+    <div class="col-sm-3"><progressbar progress="pageRating.rating.score"></div>
+    <div class="col-sm-12">{{pageRating.rating.suggestions.join(', ')}}</div>
+  </div>
 </div>

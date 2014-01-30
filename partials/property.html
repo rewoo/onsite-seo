@@ -1,0 +1,19 @@
+<div class="col-md-12">
+  <h1>{{property.title}}</h1>
+  <p>{{property.description}}</p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><a ng-click="predicate = 'page.name'; reverse = !reverse">Name</a></th>
+        <th><a ng-click="predicate = 'property.value'; reverse = !reverse">Value</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="pageProperty in pageProperties | filter:filter | numericOrderBy:predicate:reverse">
+        <td><a href="#/pages/{{pageProperty.page.id}}">{{pageProperty.page.name}}</a></td>
+        <td>{{pageProperty.property.value}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
