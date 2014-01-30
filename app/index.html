@@ -10,6 +10,7 @@
     <script type="text/javascript" src="js/seoApp.js"></script>
     <script type="text/javascript" src="js/services/siteService.js"></script>
     <script type="text/javascript" src="js/services/ratingService.js"></script>
+    <script type="text/javascript" src="js/services/showStateService.js"></script>
     <script type="text/javascript" src="js/services/propertyService.js"></script>
     <script type="text/javascript" src="js/controllers/pageListCtrl.js"></script>
     <script type="text/javascript" src="js/controllers/pageCtrl.js"></script>
@@ -32,6 +33,13 @@
         padding: 0 10px;
         color: #111;
         text-shadow: 1px 1px 0px #aaa;
+      }
+      .row-rating .btn-close {
+        display: none;
+      }
+      .row-rating:hover .btn-close {
+        display: initial;
+        color: #bbb;
       }
     </style>
   </head>

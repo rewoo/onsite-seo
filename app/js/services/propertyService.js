@@ -9,6 +9,10 @@ angular.module('seoApp').factory('PropertyService', [function() {
     titles.push(fns[i].title);
   }
 
+  service.getPropertyNames = function() {
+    return titles;
+  }
+
   service.isPropertyFunction = function(name) {
     return titles.indexOf(name) >= 0;
   };
@@ -26,8 +30,8 @@ angular.module('seoApp').factory('PropertyService', [function() {
     var result = [];
     for (var i in fns) {
       var tmp = {title: fns[i].title, description: fns[i].description};
-      result.push(tmp);
-    };
+        result.push(tmp);
+      };
     return result;
   };
 
@@ -39,6 +43,6 @@ angular.module('seoApp').factory('PropertyService', [function() {
     }
     return result;
   };
-  
+
   return service;
 }]);
