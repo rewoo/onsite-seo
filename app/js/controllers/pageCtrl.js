@@ -6,6 +6,7 @@ angular.module('seoApp').controller('PageCtrl', ['$scope', '$routeParams', 'Site
   $scope.site = null;
   $scope.page = null;
   $scope.summary = [];
+  $scope.show = {};
   $scope.groupRatings = [];
 
   $scope.$watch(SiteService.getSite, function(newValue, oldValue, scope) {
@@ -35,20 +36,23 @@ angular.module('seoApp').controller('PageCtrl', ['$scope', '$routeParams', 'Site
   $scope.updatePage = function() {
     $scope.summary = PropertyService.getAllPropertiesForPage($scope.site, $scope.page);
     $scope.groupRatings = [];
+    $scope.totalWeight = 0;
     for (var i in $scope.groups) {
-      var group = $scope.groups[i], groupRatings = $scope.getRatingsByGroup(group), score = 0, maxScore = 0;
+      var group = $scope.groups[i], groupRatings = $scope.getRatingsByGroup(group), score = 0, weight = 0, weightedScore = 0;
       for (var j in groupRatings) {
         score += groupRatings[j].score;
-        maxScore += groupRatings[j].max;
+        weightedScore += groupRatings[j].score * groupRatings[j].weight;
+        weight += groupRatings[j].weight;
       }
 
       $scope.groupRatings.push({
         name: $scope.groups[i],
         ratings: groupRatings,
-        score: score,
-        maxScore: maxScore,
-        points: ratings.getPoints(score, maxScore)
+        score: score / groupRatings.length,
+        weightedScore: weightedScore,
+        weight: weight
       });
+      $scope.totalWeight += weight;
     }
   };
 
@@ -61,7 +65,7 @@ angular.module('seoApp').controller('PageCtrl', ['$scope', '$routeParams', 'Site
       // Copy some rating properties
       rateResult.title = fn.title;
       rateResult.description = fn.description;
-      rateResult.max = fn.max;
+      rateResult.weight = fn.weight;
 
       result.push(rateResult);
     }

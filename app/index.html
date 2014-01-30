@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="seoApp">
   <head>
-    <title>OnSite SEO Offline Tool</title>
+    <title>OnPage SEO Tool For your Site</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
     <script type="text/javascript" src="//code.angularjs.org/1.2.5/angular.min.js"></script>
@@ -17,27 +17,21 @@
     <script type="text/javascript" src="js/controllers/ratingCtrl.js"></script>
     <script type="text/javascript" src="js/controllers/propertyListCtrl.js"></script>
     <script type="text/javascript" src="js/controllers/propertyCtrl.js"></script>
-    <script type="text/javascript" src="js/filters/points.js"></script>
     <script type="text/javascript" src="js/filters/numericOrderBy.js"></script>
+    <script type="text/javascript" src="js/directives/progressbar.js"></script>
 
     <style type="text/css">
-      .score {
-        display: block;
+      .row-rating {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
       }
-      .score-1 {
-        background-color: #ff9e9e;
+      .row-rating .progress {
+        margin-bottom: 0;
       }
-      .score-2 {
-        background-color: #ffd89e;
-      }
-      .score-3 {
-        background-color: #fff39e;
-      }
-      .score-4 {
-        background-color: #e6ff9e;
-      }
-      .score-5 {
-        background-color: #9eff9e;
+      .row-rating .progress-text {
+        padding: 0 10px;
+        color: #111;
+        text-shadow: 1px 1px 0px #aaa;
       }
     </style>
   </head>
@@ -57,8 +51,8 @@
         <div class="collapse navbar-collapse" id="seo-navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="#/pages">Pages</a></li>
-            <li><a href="#/properties">Properties</a></li>
             <li><a href="#/ratings">Ratings</a></li>
+            <li><a href="#/properties">Properties</a></li>
           </ul>
         </div>
       </nav>

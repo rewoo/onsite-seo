@@ -1,22 +1,17 @@
 <div class="col-md-12">
   <h1>Rating Overview</h1>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <td><a ng-click="predicate = 'title'; reverse = !reverse">Name</a></td>
-        <td><a ng-click="predicate = 'score'; reverse = !reverse">Score</a></td>
-        <td><a ng-click="predicate = 'weightedScore'; reverse = !reverse">Weighted Score</a></td>
-        <td>Description</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="rating in allPageRatings | orderBy:predicate:reverse">
-        <td><a href="#/ratings/{{slug(rating.title)}}">{{rating.title}}</a></td>
-        <td class="score-{{rating.allScore | points}}">{{rating.score | number:2}}</td>
-        <td>{{rating.weightedScore | number:2}}</td>
-        <td>{{rating.description}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-sm-4"><a ng-click="predicate = 'title'; reverse = !reverse">Name</a></div>
+    <div class="col-sm-5">Description</div>
+    <div class="col-sm-2"><a ng-click="predicate = 'score'; reverse = !reverse">Score</a></div>
+    <div class="col-sm-1"><a ng-click="predicate = 'weight'; reverse = !reverse">Weight</a></div>
+  </div>
+
+  <div class="row row-rating" ng-repeat="rating in allPageRatings | orderBy:predicate:reverse">
+    <div class="col-sm-4"><a href="#/ratings/{{slug(rating.title)}}">{{rating.title}}</a></div>
+    <div class="col-sm-5">{{rating.description}}</div>
+    <div class="col-sm-2"><progressbar progress="rating.score" /></div>
+    <div class="col-sm-1"><span class="badge">{{(rating.weight / totalWeight)*100 | number:1}}%</span></div>
+  </div>
 </div>

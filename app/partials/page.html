@@ -15,28 +15,38 @@
     </tr>
   </table>
 
-  <div ng-repeat="group in groupRatings">
-    <h3>Group {{group.name}}</h3>
-    <p>Summarized group score <span class="score-{{group.points}}">{{group.score | number:2}} or max {{group.maxScore}}</span></p>
+  <h3>Ratings</h3>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th><a ng-click="predicate2 = 'title'; reverse2 = !reverse2">Name</a></th>
-          <th><a ng-click="predicate2 = 'value'; reverse2 = !reverse2">Value</a></th>
-          <th><a ng-click="predicate2 = 'score'; reverse2 = !reverse2">Score</a></th>
-          <th><a ng-click="predicate2 = 'weightedScore'; reverse2 = !reverse2">Weighted Score</a></th>
-          <th>Suggestions</th>
-        </tr>
-      </thead>
-      <tr ng-repeat="rating in group.ratings | orderBy:predicate2:reverse2">
-        <td><a href="#/ratings/{{slug(rating.title)}}">{{rating.title}}</a></td>
-        <td>{{rating.value}}</td>
-        <td class="score-{{rating.score | points}}">{{rating.score | number:2}}</td>
-        <td>{{rating.weightedScore | number:2}}</td>
-        <td>{{rating.suggestions.join(', ')}}</td>
-      </tr>
-    </table>
+  <div class="row">
+    <div class="col-sm-7">Name</div>
+    <div class="col-sm-2">Value</div>
+    <div class="col-sm-2">Score</div>
+    <div class="col-sm-1">Weight</div>
+  </div>
+
+  <div ng-repeat="group in groupRatings">
+
+    <div class="row row-rating" >
+      <div class="col-sm-7"><b>{{group.name}}</b> <a data-ng-click="show[group.name] = !show[group.name]"><span ng-show="!show[group.name]">Show More</span><span ng-show="show[group.name]">Show Less</span></a></div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-2"><progressbar progress="group.score"></div>
+      <div class="col-sm-1"><span class="badge">{{(group.weight / totalWeight)*100 | number:1}}%</span></div>
+    </div>
+
+    <div ng-show="show[group.name]" class="row">
+      <div class="col-sm-7"><a ng-click="predicate2 = 'title'; reverse2 = !reverse2">Name</a></div>
+      <div class="col-sm-2"><a ng-click="predicate2 = 'value'; reverse2 = !reverse2">Value</a></div>
+      <div class="col-sm-2"><a ng-click="predicate2 = 'score'; reverse2 = !reverse2">Score</a></div>
+      <div class="col-sm-1"><a ng-click="predicate2 = 'weightedScore'; reverse2 = !reverse2">Weight</a></div>
+    </div>
+
+    <div ng-show="show[group.name]" class="row row-rating" data-ng-repeat="rating in group.ratings | orderBy:predicate2:reverse2">
+      <div class="col-sm-7"><a href="#/ratings/{{slug(rating.title)}}">{{rating.title}}</a></div>
+      <div class="col-sm-2">{{rating.value}}</div>
+      <div class="col-sm-2"><progressbar progress="rating.score"></div>
+      <div class="col-sm-1"><span class="badge">{{(rating.weight / totalWeight)*100 | number:1}}%</span></div>
+      <div class="col-sm-12">{{rating.suggestions.join(', ')}}</div>
+    </div>
   </div>
 
 </div>
