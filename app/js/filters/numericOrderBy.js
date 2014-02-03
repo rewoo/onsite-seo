@@ -1,22 +1,24 @@
-angular.module('seoApp').filter('numericOrderBy', function() {
-  var getPredicate = function(o, path) {
-    for (i = 0, len = path.length; i < len; i++) {
-      if (!o[path[i]]) {
-        return null;
-      }
-      o = o[path[i]];
-    }
-    return o;
-  };
-  
+angular.module('seoApp').filter('numericOrderBy', ['$parse', function($parse) {
+
   return function(list, predicate, reverse) {
-    var path = predicate ? predicate.split('.') : [];
-    return list.sort(function(a, b) {
-      var av = a, bv = b, ap = getPredicate(a, path), bp = getPredicate(b, path), result = 0;
-      if (predicate && ap && bp) {
+    if (!angular.isArray(list)) {
+      return list;
+    }
+    if (!predicate) {
+      return list;
+    }
+
+    var copy = [], getter = $parse(predicate);
+    for (var i = 0, len = list.length; i < len; i++) {
+      copy.push(list[i]);
+    }
+
+    return copy.sort(function(a, b) {
+      var av = a, bv = b, ap = getter(a), bp = getter(b), result = 0;
+      if (ap && bp) {
         if (ap.match(/^\d+(\.\d+)?$/) && bp.match(/^\d+(\.\d+)?$/)) {
-          av = parseInt(ap);
-          bv = parseInt(bp);
+          av = parseFloat(ap);
+          bv = parseFloat(bp);
         } else {
           av = ap;
           bv = bp;
@@ -33,4 +35,4 @@ angular.module('seoApp').filter('numericOrderBy', function() {
       return result;
     });
   };
-}); 
+}]);
