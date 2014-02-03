@@ -3,7 +3,7 @@
   "preferGlobal": true,
   "version": "0.1.2",
   "author": "Sebastian Felis <sebastian.felis@rewoo.com",
-  "description": "A SEO offline tool for node",
+  "description": "OnPage SEO Tool for Your Site",
   "main": "./seo.js",
   "keywords": [
     "onpage",
