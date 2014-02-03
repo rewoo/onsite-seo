@@ -4,9 +4,25 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     copy: {
-      main: {
+      seoData: {
         files: [
           { expand: true, src: ['seo-data.json'], dest: 'app', filter: 'isFile' }
+        ]
+      },
+      dist: {
+        files: [
+          { 
+            expand: true,
+            cwd: 'app',
+            src: ['**.html', 'partials/**.html', '*.json'], 
+            dest: 'dist'
+          },
+          {
+            expand: true,
+            cwd: 'app/bower_components/bootstrap/fonts',
+            src: ['*'],
+            dest: 'dist/fonts'
+          }
         ]
       }
     },
@@ -21,23 +37,58 @@ module.exports = function(grunt) {
         }
       }
     },
+    useminPrepare: {
+      html: 'app/index.html',
+      options: {
+        dest: 'dist'
+      }
+    },
+    usemin: {
+      html: ['dist/{,*/}*.html'],
+      css: ['dist/css/{,*/}*.css'],
+      options: {
+        dirs: ['dist']
+      }
+    },
     express: {
-      server: {
+      serverDev: {
         options: {
           port: 3000,
           bases: ['app'],
           serverreload: true
+        }
+      },
+      server: {
+        options: {
+          port: 3000,
+          bases: ['dist']
         }
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-express');
+  grunt.loadNpmTasks('grunt-usemin');
 
-	grunt.registerTask('app', ['copy', 'browserify']);
-	grunt.registerTask('server', ['app', 'express', 'express-keepalive']);
+	grunt.registerTask('app', ['copy:seoData', 'browserify']);
+
+  grunt.registerTask('dist', [
+    'app',
+    'useminPrepare', 
+    'copy:dist', 
+    'concat',
+    'uglify', 
+    'cssmin',
+    'usemin']);
+  
+	grunt.registerTask('server-dev', ['app', 'express:serverDev', 'express-keepalive']);
+	grunt.registerTask('server', ['dist', 'express:server', 'express-keepalive']);
 
   grunt.registerTask('default', ['app']);
 };

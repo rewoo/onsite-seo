@@ -3,3 +3,7 @@ nbproject
 seo-data.json
 report.html
 app/js/bundle.js
+app/bower_components
+dist
+.tmp
+.project

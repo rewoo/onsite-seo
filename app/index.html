@@ -3,24 +3,12 @@
   <head>
     <title>OnPage SEO Tool For your Site</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+    <!-- build:css css/vendors.css -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- endbuild -->
+    <!-- build:css css/seoapp.css -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script type="text/javascript" src="//code.angularjs.org/1.2.5/angular.min.js"></script>
-    <script type="text/javascript" src="//code.angularjs.org/1.2.5/angular-route.min.js"></script>
-    <script type="text/javascript" src="js/bundle.js"></script>
-    <script type="text/javascript" src="js/seoApp.js"></script>
-    <script type="text/javascript" src="js/services/siteService.js"></script>
-    <script type="text/javascript" src="js/services/ratingService.js"></script>
-    <script type="text/javascript" src="js/services/showStateService.js"></script>
-    <script type="text/javascript" src="js/services/propertyService.js"></script>
-    <script type="text/javascript" src="js/controllers/pageListCtrl.js"></script>
-    <script type="text/javascript" src="js/controllers/pageCtrl.js"></script>
-    <script type="text/javascript" src="js/controllers/ratingListCtrl.js"></script>
-    <script type="text/javascript" src="js/controllers/ratingCtrl.js"></script>
-    <script type="text/javascript" src="js/controllers/propertyListCtrl.js"></script>
-    <script type="text/javascript" src="js/controllers/propertyCtrl.js"></script>
-    <script type="text/javascript" src="js/filters/numericOrderBy.js"></script>
-    <script type="text/javascript" src="js/directives/progressbar.js"></script>
+    <!-- endbuild -->
   </head>
   <body>
     <div class="container">
@@ -46,5 +34,27 @@
 
       <div ng-view></div>
     </div>
+
+    <!-- build:js js/vendors.js -->
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js js/seoapp.js -->
+    <script type="text/javascript" src="js/bundle.js"></script>
+    <script type="text/javascript" src="js/seoApp.js"></script>
+    <script type="text/javascript" src="js/services/siteService.js"></script>
+    <script type="text/javascript" src="js/services/ratingService.js"></script>
+    <script type="text/javascript" src="js/services/showStateService.js"></script>
+    <script type="text/javascript" src="js/services/propertyService.js"></script>
+    <script type="text/javascript" src="js/controllers/pageListCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/pageCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/ratingListCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/ratingCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/propertyListCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/propertyCtrl.js"></script>
+    <script type="text/javascript" src="js/filters/numericOrderBy.js"></script>
+    <script type="text/javascript" src="js/directives/progressbar.js"></script>
+    <!-- endbuild -->
   </body>
 </html>

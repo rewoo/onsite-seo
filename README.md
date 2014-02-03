@@ -38,8 +38,9 @@ Now view the generated report of `report.html`.
 
 Clone this project from github. Than
 
-    $ npm install -g phantomjs
-    $ npm update
+    $ npm install -g grunt-cli bower phantomjs
+    $ npm install
+    $ bower install
 
 ## Extend
 
