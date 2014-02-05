@@ -11,10 +11,10 @@ module.exports = function(grunt) {
       },
       dist: {
         files: [
-          { 
+          {
             expand: true,
             cwd: 'app',
-            src: ['**.html', 'partials/**.html', '*.json'], 
+            src: ['index.html', '*.json'],
             dest: 'dist'
           },
           {
@@ -35,6 +35,24 @@ module.exports = function(grunt) {
         options: {
           alias: 'lib/ratings.js:ratings,lib/urlUtils.js:urlUtils,lib/properties.js:properties,lib/lightdom.js:lightdom,lib/inspector.js:inspector'
         }
+      }
+    },
+    ngtemplates: {
+      app: {
+        options: {
+          module: 'seoApp',
+          usemin: 'dist/js/seoapp.js',
+          htmlmin: {
+            collapseBooleanAttributes:      true,
+            collapseWhitespace:             true,
+            removeAttributeQuotes:          true,
+            removeComments:                 false, // Only if you don't use comment directives!
+            removeEmptyAttributes:          true,
+          }
+        },
+        cwd: 'app',
+        src: ['partials/**/*.html'],
+        dest: '.tmp/js/templates.js'
       }
     },
     useminPrepare: {
@@ -71,22 +89,24 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  
+
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-express');
   grunt.loadNpmTasks('grunt-usemin');
+  grunt.loadNpmTasks('grunt-angular-templates');
 
 	grunt.registerTask('app', ['copy:seoData', 'browserify']);
 
   grunt.registerTask('dist', [
     'app',
-    'useminPrepare', 
-    'copy:dist', 
+    'useminPrepare',
+    'ngtemplates:app',
+    'copy:dist',
     'concat',
-    'uglify', 
+    'uglify',
     'cssmin',
     'usemin']);
-  
+
 	grunt.registerTask('server-dev', ['app', 'express:serverDev', 'express-keepalive']);
 	grunt.registerTask('server', ['dist', 'express:server', 'express-keepalive']);
 
