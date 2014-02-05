@@ -1,4 +1,4 @@
-angular.module('seoApp').controller('PageCtrl', ['$scope', '$routeParams', 'SiteService', 'RatingService', 'PropertyService', 'ShowStateService', function($scope, $routeParams, SiteService, RatingService, PropertyService, ShowStateService) {
+angular.module('seoApp').controller('PageCtrl', ['$scope', '$routeParams', 'SiteService', 'RatingService', 'PropertyService', 'StateService', function($scope, $routeParams, SiteService, RatingService, PropertyService, StateService) {
   var ratings = require('ratings'),
     slug = require('urlUtils').slug;
 
@@ -6,8 +6,8 @@ angular.module('seoApp').controller('PageCtrl', ['$scope', '$routeParams', 'Site
   $scope.site = null;
   $scope.page = null;
   $scope.summary = [];
-  $scope.showRating = ShowStateService.showRating;
-  $scope.showProperty = ShowStateService.showProperty;
+  $scope.showRating = StateService.showRating;
+  $scope.showProperty = StateService.showProperty;
   $scope.propertyNames = PropertyService.getPropertyNames();
   $scope.groupRatings = [];
 
