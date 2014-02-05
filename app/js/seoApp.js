@@ -24,6 +24,10 @@ angular.module('seoApp', ['ngRoute']).config(['$routeProvider', function($routeP
           templateUrl: 'partials/propertyList.html',
           controller: 'PropertyListCtrl'
         }).
+        when('/search', {
+          templateUrl: 'partials/search.html',
+          controller: 'SearchCtrl'
+        }).
         otherwise({
           redirectTo: '/pages'
         });
