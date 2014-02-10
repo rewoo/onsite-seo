@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="seoApp">
+<html lang="en" data-ng-app="seoApp">
   <head>
     <title>OnPage SEO Tool For your Site</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/vendors.css"/>
     <link rel="stylesheet" href="css/seoapp.css"/>
   </head>
@@ -24,11 +25,12 @@
             <li><a href="#/pages">Pages</a></li>
             <li><a href="#/ratings">Ratings</a></li>
             <li><a href="#/properties">Properties</a></li>
+            <li><a href="#/search">Search</a></li>
           </ul>
         </div>
       </nav>
 
-      <div ng-view></div>
+      <div data-ng-view></div>
     </div>
 
     <script src="js/vendors.js"></script>
