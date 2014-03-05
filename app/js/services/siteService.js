@@ -1,20 +1,32 @@
 angular.module('seoApp').factory('SiteService', ['$http', function($http) {
-  var service = {}, urlUtils = require('urlUtils'), data = {}, init;
+  var service = {}, urlUtils = require('urlUtils'), site = {}, init;
+
 
   init = function() {
     $http.get('seo-data.json').success(function(json) {
-      data = json;
-      for (var i in data.pages) {
-        data.pages[i].name = urlUtils.relative(data.address, data.pages[i].url);
-        data.pages[i].id = urlUtils.slug(data.pages[i].name);
+      var address = json.address,
+        pages = json.pages || [],
+        urls = [];
+
+      for (var i in pages) {
+        var page = pages[i];
+        if (page.status !== 'success') {
+          continue;
+        }
+        urls.push(page.url);
+        page.name = urlUtils.relative(address, page.url);
+        page.id = urlUtils.slug(page.name);
       }
+
+      // Assign service data
+      site = {address: address, urls: urls, pages: pages};
     });
   };
   service.getSite = function() {
-    return data;
+    return site;
   };
   service.getPages = function() {
-    return data.pages || [];
+    return site.pages || [];
   };
   service.getPageById = function(id) {
     var pages = service.getPages();
