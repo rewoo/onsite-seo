@@ -6,6 +6,9 @@ angular.module('seoApp').controller('RatingListCtrl', ['$scope', 'SiteService', 
   $scope.slug = urlUtils.slug;
   $scope.totalWeight = 0;
 
+  $scope.predicate = 'title';
+  $scope.reverse = false;
+
   $scope.$watch(SiteService.getSite, function(newValue, oldValue, scope) {
     if (newValue && (newValue !== oldValue || !scope.allPageRatings.length)) {
       scope.allPageRatings = RatingService.getAllPageRatings(newValue, SiteService.getPages());
