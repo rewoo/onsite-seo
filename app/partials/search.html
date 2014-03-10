@@ -7,8 +7,12 @@
 
   <p ng-show="matches.matchCount">Found {{matches.matchCount}} matches in {{matches.pages.length}} pages</p>
   
-  <div class="row row-rating" ng-repeat="match in matches.pages">
+  <div class="row row-rating" >
+    <div class="col-sm-4"><a ng-click="predicate = 'page.name'; reverse = !reverse">Page URL</a></div>
+    <div class="col-sm-8"><a ng-click="predicate = 'matches.length'; reverse = !reverse">Matches</a></div>
+  </div>
+  <div class="row row-rating" ng-repeat="match in matches.pages | orderBy:predicate:reverse">
     <div class="col-sm-4"><a href="#/pages/{{match.page.id}}">{{match.page.name}}</a></div>
-    <div class="col-sm-8">{{ match.matches.join(', ') }}</div>
+    <div class="col-sm-8">{{ match.matches.length }} matches: {{ match.matches.join(', ') }}</div>
   </div>
 </div>
