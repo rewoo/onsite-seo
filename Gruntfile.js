@@ -14,7 +14,7 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: 'app',
-            src: ['index.html', '*.json'],
+            src: ['*.json'],
             dest: 'dist'
           },
           {
@@ -37,6 +37,27 @@ module.exports = function(grunt) {
         }
       }
     },
+    watch: {
+      app: {
+        files: ['app/**', 'lib/**'],
+        tasks: ['app'],
+        options: {
+          livereload: true,
+          spawn: false
+        }
+      }
+    },
+    processhtml: {
+      dist: {
+        options: {
+          process: true,
+          inline: true
+        },
+        files: {
+          'dist/index.html': ['dist/index.html']
+        }
+      }
+    },
     ngtemplates: {
       app: {
         options: {
@@ -47,7 +68,7 @@ module.exports = function(grunt) {
             collapseWhitespace:             true,
             removeAttributeQuotes:          true,
             removeComments:                 false, // Only if you don't use comment directives!
-            removeEmptyAttributes:          true,
+            removeEmptyAttributes:          true
           }
         },
         cwd: 'app',
@@ -69,11 +90,11 @@ module.exports = function(grunt) {
       }
     },
     express: {
-      serverDev: {
+      dev: {
         options: {
           port: 3000,
           bases: ['app'],
-          serverreload: true
+          serverreload: false
         }
       },
       server: {
@@ -89,9 +110,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-express');
+  grunt.loadNpmTasks('grunt-processhtml');
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-angular-templates');
 
@@ -102,12 +125,13 @@ module.exports = function(grunt) {
     'useminPrepare',
     'ngtemplates:app',
     'copy:dist',
+    'processhtml:dist',
     'concat',
     'uglify',
     'cssmin',
     'usemin']);
 
-	grunt.registerTask('server-dev', ['app', 'express:serverDev', 'express-keepalive']);
+	grunt.registerTask('dev', ['app', 'express:dev', 'watch:app']);
 	grunt.registerTask('server', ['dist', 'express:server', 'express-keepalive']);
 
   grunt.registerTask('default', ['app']);

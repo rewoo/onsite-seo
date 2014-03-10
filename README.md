@@ -34,6 +34,15 @@ Now view the generated report of `report.html`.
 
 `-n`, `--data-only`: Crawl only data to `seo-data.json`.
 
+### Development
+
+While developing the JS version you can run
+
+		$ grunt dev
+
+and open your browser at `http://localhost:3000`. This starts a non minified version
+of the web page including livereload.
+
 ## Installation
 
 Clone this project from github. Than
