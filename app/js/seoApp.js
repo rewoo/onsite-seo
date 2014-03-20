@@ -1,4 +1,4 @@
-angular.module('seoApp', ['ngRoute']).config(['$routeProvider', function($routeProvider) {
+angular.module('seoApp', ['ngRoute', 'd3']).config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/pages/:pageId', {
           templateUrl: 'partials/page.html',
@@ -28,8 +28,12 @@ angular.module('seoApp', ['ngRoute']).config(['$routeProvider', function($routeP
           templateUrl: 'partials/search.html',
           controller: 'SearchCtrl'
         }).
+        when('/home', {
+          templateUrl: 'partials/home.html',
+          controller: 'HomeCtrl'
+        }).
         otherwise({
-          redirectTo: '/pages'
+          redirectTo: '/home'
         });
   }]);
 ;

@@ -55,5 +55,36 @@ angular.module('seoApp').factory('RatingService', [function() {
     };
     return result;
   };
+
+  /**
+   * Returns array of pages with list of ratings
+   *
+   * @param {Object} site
+   * @param {Object} pages
+   * @returns {Array} Returns two dimensional array for pages and scores.
+   */
+  service.getScoresPerPage = function(site, pages) {
+    var result = [];
+
+    pages = pages.sort(function(a, b) {
+      a = a.name.toLowerCase(); b = b.name.toLowerCase();
+      if (a < b) {
+        return -1;
+      } else if (a > b) {
+        return 1;
+      }
+      return 0;
+    });
+
+    for (var i in pages) {
+      var scores = [];
+      for (var j in fns) {
+        scores.push({score: fns[j].rateFn(pages[i], site), rating: fns[j]});
+      }
+      result.push({page: pages[i], scores: scores});
+    };
+
+    return result;
+  };
   return service;
 }]);
