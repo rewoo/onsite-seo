@@ -61,7 +61,7 @@ crawler.crawl(address, options).then(function(result) {
   }
 
   if (!options.dataOnly) {
-    var report = require('./lib/report')
+    var report = require('./lib/report');
     html = report.generateReport(result);
     fs.write(options.report, html, 'w');
   } else {
