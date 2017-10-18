@@ -2,6 +2,19 @@
   <h2>{{title}}</h2>
   
   <p><a href="{{url}}">Visit Site</a></p>
-  
-  {{content}}
+
+  <div id="tabs-container">
+    <ul class="tabs-menu">
+      <li class="current"><a href="#tab-ratings{{id}}">Ratings</a></li>
+      <li><a href="#tab-socials{{id}}">Socials</a></li>
+    </ul>
+    <div class="tab">
+      <div id="tab-ratings{{id}}" class="tab-content tab-ratings">
+        {{ratings}}
+      </div>
+      <div id="tab-socials{{id}}" class="tab-content tab-socials">
+        {{socials}}
+      </div>
+    </div>
+  </div>
 </div>

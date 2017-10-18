@@ -13,9 +13,10 @@
   ],
   "dependencies": {
     "q": "~1.0.0",
-    "phantomjs": "~1.9.7-1",
-    "browserify": "~3.24.11",
-    "url": "~0.7.9"
+    "phantomjs": "~2.1.1",
+    "browserify": "~12.0.0",
+    "url": "~0.7.9",
+    "snyk": "^1.43.0"
   },
   "license": "MIT",
   "engines": {
@@ -33,5 +34,10 @@
     "grunt-angular-templates": "~0.5.1",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-processhtml": "~0.3.0"
-  }
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
